@@ -26,7 +26,8 @@ static NSString *identifier = @"identifier";
 }
 
 - (void)setData{
-    [self addText:@"UIKitExample" detailText:@"UIKitExample demo" className:@"UIKitExample"];
+    [self addText:@"UIKitExamplesMenu" detailText:@"UIKitExamplesMenu demo" className:@"UIKitExamplesMenu"];
+    [self addText:@"UtilityExamplesMenu" detailText:@"UtilityExamplesMenu demo" className:@"UtilityExamplesMenu"];
 }
 
 

@@ -26,11 +26,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.textView];
     
-    self.textView.placeholder = @"placeholder";
+    self.textView.m_placeholder = @"placeholder";
     self.textView.font = [UIFont systemFontOfSize:17];
-    self.textView.filtrationOptions = TextFiltrationEmoji;
-    self.textView.maxLength = 11;
-    self.textView.observeTextChangedBlock = ^(NSString *text) {
+    self.textView.m_filtrationOptions = TextFiltrationEmoji;
+    self.textView.m_maxLength = 11;
+    self.textView.m_observeTextChangedBlock = ^(NSString *text) {
         NSLog(@"observeTextChangedBlock -- %@", text);
     };
 }

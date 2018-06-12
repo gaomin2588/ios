@@ -26,12 +26,12 @@ typedef NS_OPTIONS(NSUInteger, TextLimitOptions) {
 @interface UITextField (mAdd)
 
 // 默认长度  INT_MAX
-@property (nonatomic, assign)   NSUInteger maxLength;
-@property (nonatomic, assign)   NSUInteger currentTextLength;
-@property (nonatomic, assign)   TextLimitOptions limitOptions;
-@property (nonatomic, copy)     NSString *regularExpressionText;
-@property (nonatomic, copy)     NSString *characterSetText;
-@property (nonatomic, copy)     void (^observeTextChangedBlock) (NSString *text);
+@property (nonatomic, assign)   NSUInteger m_maxLength;
+@property (nonatomic, assign)   NSUInteger m_currentTextLength;
+@property (nonatomic, assign)   TextLimitOptions m_limitOptions;
+@property (nonatomic, copy)     NSString *m_regularExpressionText;
+@property (nonatomic, copy)     NSString *m_characterSetText;
+@property (nonatomic, copy)     void (^m_observeTextChangedBlock) (NSString *text);
 
 
 @end

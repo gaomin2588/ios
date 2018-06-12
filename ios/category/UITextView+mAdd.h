@@ -28,17 +28,17 @@ typedef NS_OPTIONS(NSUInteger, TextFiltrationOptions) {
 @interface UITextView (mAdd)
 
 // placeholder
-@property (nonatomic, readonly) UILabel *placeholderLabel;
-@property (nonatomic, strong)   NSString *placeholder;
-@property (nonatomic, strong)   NSAttributedString *attributedPlaceholder;
-@property (nonatomic, strong)   UIColor *placeholderColor;
+@property (nonatomic, readonly) UILabel *m_placeholderLabel;
+@property (nonatomic, strong)   NSString *m_placeholder;
+@property (nonatomic, strong)   NSAttributedString *m_attributedPlaceholder;
+@property (nonatomic, strong)   UIColor *m_placeholderColor;
 
 // 默认长度  INT_MAX
-@property (nonatomic, assign)   NSUInteger maxLength;
-@property (nonatomic, assign)   NSUInteger currentTextLength;
-@property (nonatomic, assign)   TextFiltrationOptions filtrationOptions;
-@property (nonatomic, copy)     NSString *regularExpressionText;
-@property (nonatomic, copy)     NSString *characterSetText;
-@property (nonatomic, copy)     void (^observeTextChangedBlock) (NSString *text);
+@property (nonatomic, assign)   NSUInteger m_maxLength;
+@property (nonatomic, assign)   NSUInteger m_currentTextLength;
+@property (nonatomic, assign)   TextFiltrationOptions m_filtrationOptions;
+@property (nonatomic, copy)     NSString *m_regularExpressionText;
+@property (nonatomic, copy)     NSString *m_characterSetText;
+@property (nonatomic, copy)     void (^m_observeTextChangedBlock) (NSString *text);
 
 @end

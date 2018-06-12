@@ -6,16 +6,16 @@
 //  Copyright © 2018年 losermo4. All rights reserved.
 //
 
-#import "UIKitExample.h"
+#import "UIKitExamplesMenu.h"
 #import "iOSExampleModel.h"
 
-@interface UIKitExample ()
+@interface UIKitExamplesMenu ()
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @end
 
-@implementation UIKitExample
+@implementation UIKitExamplesMenu
 
 static NSString *identifier = @"identifier";
 

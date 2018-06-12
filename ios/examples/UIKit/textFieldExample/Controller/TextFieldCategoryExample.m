@@ -11,6 +11,8 @@
 
 @interface TextFieldCategoryExample ()
 
+@property (nonatomic, strong) UITextField *textField;
+
 @end
 
 @implementation TextFieldCategoryExample
@@ -19,6 +21,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.textField];
+    
+    self.textField.m_maxLength = 11;
+    self.textField.m_limitOptions = TextLimitOnlyExistChineseOrLetterOrNumber;
+    self.textField.m_observeTextChangedBlock = ^(NSString *text) {
+        NSLog(@"%@", text);
+    };
+    
+    
+}
+
+
+
+- (UITextField *)textField{
+    if (_textField) return _textField;
+    _textField = [[UITextField alloc] init];
+    _textField.frame = CGRectMake(0, 100, kScreenWidth, 100);
+    _textField.placeholder = @"placeholder";
+    return _textField;
 }
 
 - (void)didReceiveMemoryWarning {

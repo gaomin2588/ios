@@ -1,5 +1,5 @@
 //
-//  UIKitExample.h
+//  MGCDTimerExample.h
 //  ios
 //
 //  Created by 高敏 on 2018/6/6.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIKitExample : UITableViewController
+@interface MGCDTimerExample : UIViewController
 
 @end

@@ -40,12 +40,12 @@ static const char *kObserveTextChangedBlock    = "kObserveTextChangedBlock";
 
 @implementation UITextField (mAdd)
 
-@dynamic maxLength;
-@dynamic limitOptions;
-@dynamic regularExpressionText;
-@dynamic characterSetText;
-@dynamic currentTextLength;
-@dynamic observeTextChangedBlock;
+@dynamic m_maxLength;
+@dynamic m_limitOptions;
+@dynamic m_regularExpressionText;
+@dynamic m_characterSetText;
+@dynamic m_currentTextLength;
+@dynamic m_observeTextChangedBlock;
 
 + (void)load{
     static dispatch_once_t onceToken;
@@ -84,43 +84,43 @@ static const char *kObserveTextChangedBlock    = "kObserveTextChangedBlock";
     
     
     NSString *text = nil;
-    if (self.limitOptions & TextLimitNone){
+    if (self.m_limitOptions & TextLimitNone){
         // 不做任何操作
         text = self.text;
     }
     
     // 过滤表情
-    if (self.limitOptions & TextLimitEmoji){
+    if (self.m_limitOptions & TextLimitEmoji){
         NSString *orgionText = self.text;
         text = [self orgionStr:orgionText withRegex:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"];
     }
     
-    if (self.limitOptions & TextLimitUnlawfulCharacter) {
+    if (self.m_limitOptions & TextLimitUnlawfulCharacter) {
         NSString *orgionText = self.text;
         text = [self orgionStr:orgionText withCharacterSetStr:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
     }
     
     // 过滤字符串中的非汉字、字母、数字
-    if (self.limitOptions & TextLimitOnlyExistChineseOrLetterOrNumber) {
+    if (self.m_limitOptions & TextLimitOnlyExistChineseOrLetterOrNumber) {
         NSString *orgionText = self.text;
         text = [self orgionStr:orgionText withRegex:@"[^a-zA-Z0-9\u4e00-\u9fa5]"];
     }
     
     // 自定义 RegularExpression过滤
-    if (self.limitOptions & TextLimitCustomByRegularExpression) {
-        if (self.regularExpressionText && self.regularExpressionText.length > 0) {
+    if (self.m_limitOptions & TextLimitCustomByRegularExpression) {
+        if (self.m_regularExpressionText && self.m_regularExpressionText.length > 0) {
             NSString *orgionText = self.text;
-            text = [self orgionStr:orgionText withRegex:self.regularExpressionText];
+            text = [self orgionStr:orgionText withRegex:self.m_regularExpressionText];
         }else{
             text = self.text;
         }
     }
     
     // 自定义 CharacterSet过滤
-    if (self.limitOptions & TextLimitCustomByCharacterSet) {
-        if (self.characterSetText && self.characterSetText.length > 0) {
+    if (self.m_limitOptions & TextLimitCustomByCharacterSet) {
+        if (self.m_characterSetText && self.m_characterSetText.length > 0) {
             NSString *orgionText = self.text;
-            text = [self orgionStr:orgionText withCharacterSetStr:self.characterSetText];
+            text = [self orgionStr:orgionText withCharacterSetStr:self.m_characterSetText];
         }else{
             text = self.text;
         }
@@ -161,31 +161,31 @@ static const char *kObserveTextChangedBlock    = "kObserveTextChangedBlock";
     
     if ([text isEqualToString:self.text]) {
         
-        if (text.length > self.maxLength) {
-            self.text = [text substringToIndex:self.maxLength];
+        if (text.length > self.m_maxLength) {
+            self.text = [text substringToIndex:self.m_maxLength];
         }
         
     }else{
         
-        if (text.length > self.maxLength) {
-            self.text = [text substringToIndex:self.maxLength];
+        if (text.length > self.m_maxLength) {
+            self.text = [text substringToIndex:self.m_maxLength];
         }else{
             self.text = text;
         }
     }
     
-    if (self.observeTextChangedBlock) {
-        self.observeTextChangedBlock(self.text);
+    if (self.m_observeTextChangedBlock) {
+        self.m_observeTextChangedBlock(self.text);
     }
     
     
 }
 
-- (void)setMaxLength:(NSUInteger)maxLength{
+- (void)setM_maxLength:(NSUInteger)maxLength{
     objc_setAssociatedObject(self, kMaxLenth, @(maxLength), OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (NSUInteger)maxLength{
+- (NSUInteger)m_maxLength{
     NSUInteger max = [objc_getAssociatedObject(self, kMaxLenth) integerValue];
     if (max) return max;
     max = INT_MAX;
@@ -193,12 +193,12 @@ static const char *kObserveTextChangedBlock    = "kObserveTextChangedBlock";
 }
 
 
-- (void)setLimitOptions:(TextLimitOptions)limitOptions{
+- (void)setM_limitOptions:(TextLimitOptions)limitOptions{
     objc_setAssociatedObject(self, kLimitOptios, @(limitOptions), OBJC_ASSOCIATION_ASSIGN);
 
 }
 
-- (TextLimitOptions)limitOptions{
+- (TextLimitOptions)m_limitOptions{
     TextLimitOptions option = [objc_getAssociatedObject(self, kLimitOptios) integerValue];
     if (option)  return option;
     option = TextLimitNone;
@@ -207,36 +207,36 @@ static const char *kObserveTextChangedBlock    = "kObserveTextChangedBlock";
 }
 
 
-- (NSUInteger)currentTextLength{
+- (NSUInteger)m_currentTextLength{
     return self.text.length;
 }
 
-- (void)setRegularExpressionText:(NSString *)regularExpressionText{
+- (void)setM_regularExpressionText:(NSString *)regularExpressionText{
     objc_setAssociatedObject(self, kRegularExpressionText, regularExpressionText, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (NSString *)regularExpressionText{
+- (NSString *)m_regularExpressionText{
     NSString *retext = objc_getAssociatedObject(self, kRegularExpressionText);
     if (retext) return retext;
     retext = @"";
     return retext;
 }
 
-- (void)setCharacterSetText:(NSString *)characterSetText{
+- (void)setM_characterSetText:(NSString *)characterSetText{
     objc_setAssociatedObject(self, kCharacterSetText, characterSetText, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (NSString *)characterSetText{
+- (NSString *)m_characterSetText{
     NSString *cstext = objc_getAssociatedObject(self, kCharacterSetText);
     if (cstext) return cstext;
     cstext = @"";
     return cstext;
 }
 
-- (void)setObserveTextChangedBlock:(void (^)(NSString *))observeTextChangedBlock{
+- (void)setM_observeTextChangedBlock:(void (^)(NSString *))observeTextChangedBlock{
     objc_setAssociatedObject(self, kObserveTextChangedBlock, observeTextChangedBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (void (^)(NSString *))observeTextChangedBlock{
+- (void (^)(NSString *))m_observeTextChangedBlock{
     return objc_getAssociatedObject(self, kObserveTextChangedBlock);
 }
 
