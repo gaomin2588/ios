@@ -29,6 +29,7 @@ static NSString *identifier = @"identifier";
 
 - (void)setData{
     [self addText:@"MGCDTimerExample" detailText:@"MGCDTimerExample demo" className:@"MGCDTimerExample"];
+    [self addText:@"MNetworkExample" detailText:@"MNetworkExample demo and about PromiseKit use" className:@"MNetworkExample"];
 
 }
 

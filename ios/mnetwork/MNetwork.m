@@ -9,34 +9,32 @@
 #import "MNetwork.h"
 
 
-#define force_inline __inline__ __attribute__((always_inline))
-
-static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
-    switch (method) {
-        case GET:
-            return @"GET";
-            break;
-            case POST:
-            return @"POST";
-        default:
-            return @"GET";
-            break;
-    }
-}
+//#define force_inline __inline__ __attribute__((always_inline))
+//
+//static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
+//    switch (method) {
+//        case GET:
+//            return @"GET";
+//            break;
+//            case POST:
+//            return @"POST";
+//        default:
+//            return @"GET";
+//            break;
+//    }
+//}
 
 @interface MNetwork ()
 
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 @property (nonatomic, strong) NSMutableDictionary *tasks;
 @property (nonatomic, strong) NSMutableArray *dataFilters;
-@property (nonatomic, copy, readwrite) NSString *baseUrl;
 
 @end
 
 @implementation MNetwork
 
 - (instancetype)init{
-    NSLog(@"Please use \"initWithBaseUrl:\" to create MNetwork instance");
     return [self initWithBaseUrl:@""];
 }
 
@@ -44,10 +42,18 @@ static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
     self = [super init];
     if (!self)  return nil;
     self.baseUrl = baseUrl;
-    self.sessionManager = [AFHTTPSessionManager manager];
     self.tasks = [NSMutableDictionary dictionary];
     self.dataFilters = [NSMutableArray array];
+    self.ignoreBaseUrl = NO;
     return self;
+}
+
+- (AFHTTPSessionManager *)sessionManager{
+    if (_sessionManager) return _sessionManager;
+    _sessionManager = [AFHTTPSessionManager manager];
+    _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    return _sessionManager;
 }
 
 - (void)configAcceptable:(NSSet *)acceptable{
@@ -79,14 +85,21 @@ static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
                              success:(void (^)(id))success
                              failure:(void (^)(NSError *))failure{
     NSString *fullUrl = nil;
-    if (!self.baseUrl || self.baseUrl.length == 0) {
+    if (self.ignoreBaseUrl) {
         fullUrl = url;
     }else{
         fullUrl = [NSString stringWithFormat:@"%@%@", self.baseUrl, url];
     }
     
     if (fullUrl.length == 0) {
-        NSLog(@"Your MNetwork's url is nil, please check out your url!");
+        NSError *error = [NSError errorWithDomain:@"MNetwork" code:1 userInfo:@{NSLocalizedDescriptionKey:@"Your MNetwork's url is nil, please check out your url!"}];
+        failure(error);
+        return nil;
+    }
+    
+    if (![NSURL URLWithString:fullUrl]) {
+        NSError *error = [NSError errorWithDomain:@"MNetwork" code:2 userInfo:@{NSLocalizedDescriptionKey:@"Your Network has a error url, please check out your url!"}];
+        failure(error);
         return nil;
     }
     
@@ -110,13 +123,17 @@ static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
                 progress(uploadProgress);
             }
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+            [_self requestSuccess:url HttpMethod:POST params:params task:task result:responseObject success:success failure:failure];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [_self requestFailure:fullUrl HttpMethod:POST params:params task:task error:error failure:failure];
         }];
         return networkTask;
     }
     
+    if (!networkTask) {
+        NSError *error = [NSError errorWithDomain:@"MNetwork" code:3 userInfo:@{NSLocalizedDescriptionKey:@"Your Network's sessionTask is nil, please check out your HTTPMethod!"}];
+        failure(error);
+    }
     
     return nil;
 }
@@ -140,10 +157,14 @@ static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
             responseObj = obj;
         }
     }
-    //TODO: 未完成~~~ 待续~~
-    
+    if (success) {
+        success(responseObj);
+    }
     
 }
+
+
+
 
 - (void)requestFailure:(NSString *)url
             HttpMethod:(HTTPMethod)httpMethod
@@ -177,6 +198,42 @@ static force_inline NSString *methodFromHTTPMethod(HTTPMethod method){
 }
 
 
+@end
+
+@implementation MNetwork (Promise)
+
+- (AnyPromise *)GET:(NSString *)url params:(id)params{
+    return [self GET:url params:params progress:nil];
+}
+
+- (AnyPromise *)GET:(NSString *)url params:(id)params progress:(void (^)(NSProgress *))progress{
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
+       
+        [self GET:url params:params progress:progress success:^(id responseObj) {
+            resolve(responseObj);
+        } failure:^(NSError *error) {
+            resolve(error);
+        }];
+    }];
+}
+
+- (AnyPromise *)POST:(NSString *)url params:(id)params{
+    return [self POST:url params:params progress:nil];
+}
+
+- (AnyPromise *)POST:(NSString *)url params:(id)params progress:(void (^)(NSProgress *))progress{
+    return [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
+        
+        [self POST:url params:params progress:progress success:^(id responseObj) {
+            resolve(responseObj);
+        } failure:^(NSError *error) {
+            resolve(error);
+        }];
+        
+    }];
+}
 
 
 @end
+
+

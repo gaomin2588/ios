@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A210662020D206AE0011C732 /* MNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = A210661F20D206AE0011C732 /* MNetwork.m */; };
+		A210662A20D2094E0011C732 /* MNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A210662920D2094E0011C732 /* MNetworkManager.m */; };
+		A210662D20D2096D0011C732 /* MNetworkExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A210662C20D2096D0011C732 /* MNetworkExample.m */; };
+		A210663020D20C8E0011C732 /* NSString+mAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A210662F20D20C8E0011C732 /* NSString+mAdd.m */; };
 		A282595D20C7D342006324C0 /* UtilityExamplesMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A282595C20C7D342006324C0 /* UtilityExamplesMenu.m */; };
 		A282596420C7D4C8006324C0 /* MGCDTimerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A282596320C7D4C8006324C0 /* MGCDTimerExample.m */; };
-		A282596820CE0562006324C0 /* MNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = A282596720CE0562006324C0 /* MNetwork.m */; };
 		A291E88A20C685DF000B6788 /* iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A291E88920C685DF000B6788 /* iosTests.m */; };
 		A291E89520C685DF000B6788 /* iosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A291E89420C685DF000B6788 /* iosUITests.m */; };
 		A291E8AE20C6866E000B6788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A291E8A420C6866E000B6788 /* Assets.xcassets */; };
@@ -52,12 +55,18 @@
 /* Begin PBXFileReference section */
 		7680C651045E0D4918310195 /* Pods-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		946B6FADA196402DE62F2362 /* Pods-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.release.xcconfig"; sourceTree = "<group>"; };
+		A210661E20D206AE0011C732 /* MNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNetwork.h; sourceTree = "<group>"; };
+		A210661F20D206AE0011C732 /* MNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNetwork.m; sourceTree = "<group>"; };
+		A210662820D2094E0011C732 /* MNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNetworkManager.h; sourceTree = "<group>"; };
+		A210662920D2094E0011C732 /* MNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNetworkManager.m; sourceTree = "<group>"; };
+		A210662B20D2096D0011C732 /* MNetworkExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNetworkExample.h; sourceTree = "<group>"; };
+		A210662C20D2096D0011C732 /* MNetworkExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNetworkExample.m; sourceTree = "<group>"; };
+		A210662E20D20C8E0011C732 /* NSString+mAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+mAdd.h"; sourceTree = "<group>"; };
+		A210662F20D20C8E0011C732 /* NSString+mAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+mAdd.m"; sourceTree = "<group>"; };
 		A282595B20C7D342006324C0 /* UtilityExamplesMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilityExamplesMenu.h; sourceTree = "<group>"; };
 		A282595C20C7D342006324C0 /* UtilityExamplesMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilityExamplesMenu.m; sourceTree = "<group>"; };
 		A282596220C7D4C8006324C0 /* MGCDTimerExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGCDTimerExample.h; sourceTree = "<group>"; };
 		A282596320C7D4C8006324C0 /* MGCDTimerExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGCDTimerExample.m; sourceTree = "<group>"; };
-		A282596620CE0562006324C0 /* MNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNetwork.h; sourceTree = "<group>"; };
-		A282596720CE0562006324C0 /* MNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNetwork.m; sourceTree = "<group>"; };
 		A291E86D20C685DD000B6788 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A291E88520C685DF000B6788 /* iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A291E88920C685DF000B6788 /* iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosTests.m; sourceTree = "<group>"; };
@@ -136,11 +145,56 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A210661D20D206AE0011C732 /* mnetwork */ = {
+			isa = PBXGroup;
+			children = (
+				A210661E20D206AE0011C732 /* MNetwork.h */,
+				A210661F20D206AE0011C732 /* MNetwork.m */,
+			);
+			path = mnetwork;
+			sourceTree = "<group>";
+		};
+		A210662120D208F40011C732 /* MNetworkExample */ = {
+			isa = PBXGroup;
+			children = (
+				A210662220D208F40011C732 /* Controller */,
+				A210662320D208F40011C732 /* Model */,
+				A210662420D208F40011C732 /* View */,
+			);
+			path = MNetworkExample;
+			sourceTree = "<group>";
+		};
+		A210662220D208F40011C732 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A210662B20D2096D0011C732 /* MNetworkExample.h */,
+				A210662C20D2096D0011C732 /* MNetworkExample.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A210662320D208F40011C732 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A210662820D2094E0011C732 /* MNetworkManager.h */,
+				A210662920D2094E0011C732 /* MNetworkManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A210662420D208F40011C732 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A282595A20C7D31D006324C0 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				A282595B20C7D342006324C0 /* UtilityExamplesMenu.h */,
 				A282595C20C7D342006324C0 /* UtilityExamplesMenu.m */,
+				A210662120D208F40011C732 /* MNetworkExample */,
 				A282595E20C7D465006324C0 /* MGCDTimerExample */,
 			);
 			path = Utility;
@@ -179,15 +233,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A282596520CE0540006324C0 /* network */ = {
-			isa = PBXGroup;
-			children = (
-				A282596620CE0562006324C0 /* MNetwork.h */,
-				A282596720CE0562006324C0 /* MNetwork.m */,
-			);
-			path = network;
-			sourceTree = "<group>";
-		};
 		A291E86420C685DD000B6788 = {
 			isa = PBXGroup;
 			children = (
@@ -213,7 +258,7 @@
 		A291E86F20C685DD000B6788 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				A282596520CE0540006324C0 /* network */,
+				A210661D20D206AE0011C732 /* mnetwork */,
 				A291E8D120C785CB000B6788 /* utility */,
 				A291E8C520C68A5B000B6788 /* category */,
 				A291E8BD20C689ED000B6788 /* examples */,
@@ -280,6 +325,8 @@
 				A291E8D620C7885F000B6788 /* UITextField+mAdd.m */,
 				A291E8C720C68A5B000B6788 /* NSTimer+mAdd.h */,
 				A291E8C920C68A5B000B6788 /* NSTimer+mAdd.m */,
+				A210662E20D20C8E0011C732 /* NSString+mAdd.h */,
+				A210662F20D20C8E0011C732 /* NSString+mAdd.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -525,9 +572,12 @@
 			files = (
 				A291E8BC20C688BE000B6788 /* iOSExampleModel.m in Sources */,
 				A291E8EA20C7C96A000B6788 /* TextFieldCategoryExample.m in Sources */,
+				A210662A20D2094E0011C732 /* MNetworkManager.m in Sources */,
+				A210662D20D2096D0011C732 /* MNetworkExample.m in Sources */,
 				A291E8CA20C68A5B000B6788 /* UITextView+mAdd.m in Sources */,
 				A291E8B220C6866E000B6788 /* main.m in Sources */,
 				A291E8D420C785EE000B6788 /* MGCDTimer.m in Sources */,
+				A210663020D20C8E0011C732 /* NSString+mAdd.m in Sources */,
 				A282596420C7D4C8006324C0 /* MGCDTimerExample.m in Sources */,
 				A291E8D720C7885F000B6788 /* UITextField+mAdd.m in Sources */,
 				A291E8AF20C6866E000B6788 /* ViewController.m in Sources */,
@@ -539,7 +589,7 @@
 				A291E8B320C6866E000B6788 /* AppDelegate.m in Sources */,
 				A291E8F020C7CAB9000B6788 /* TextViewExampleMenu.m in Sources */,
 				A291E8ED20C7C9AA000B6788 /* UIKitExamplesMenu.m in Sources */,
-				A282596820CE0562006324C0 /* MNetwork.m in Sources */,
+				A210662020D206AE0011C732 /* MNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
